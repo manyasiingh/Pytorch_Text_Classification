@@ -9,6 +9,17 @@ This project implements a simple neural network using PyTorch to classify news a
 - **Model:** A custom PyTorch `nn.Module` with an Embedding layer, a Hidden Linear layer (ReLU), and an Output layer.
 - **Optimization:** Adam Optimizer with Cross-Entropy Loss.
 
+## 📊 Results & Evaluation
+
+The model's performance was evaluated using a Confusion Matrix to identify specific classification challenges.
+
+![Confusion Matrix](<img width="793" height="624" alt="image" src="https://github.com/user-attachments/assets/31ed1353-b2bc-470f-8bbc-ce7d18e9de6b" />
+)
+
+### Analysis
+- The model performs exceptionally well on **Sports** news.
+- Most errors occur between **Business** and **Sci/Tech**, which is expected as these topics often overlap in modern journalism.
+
 ## 🛠️ Installation & Setup
 1. Clone the repository:
    ```bash
