@@ -94,6 +94,38 @@ with torch.no_grad():
 accuracy = correct / total
 print(f"Test Accuracy : {accuracy:.4f}")
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
+import numpy as np
+
+def plot_confusion_matrix(model, dataloader, device):
+    model.eval()
+    all_preds = []
+    all_labels = []
+    categories = ["World", "Sports", "Business", "Sci/Tech"]
+
+    with torch.no_grad():
+        for batch in dataloader:
+            input_ids = batch["input_ids"].to(device)
+            labels = batch["labels"].to(device)
+            outputs = model(input_ids)
+            predictions = torch.argmax(outputs, dim=1)
+            
+            all_preds.extend(predictions.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+
+    cm = confusion_matrix(all_labels, all_preds)
+    plt.figure(figsize=(10, 7))
+    sns.heatmap(cm, annot=True, fmt='d', xticklabels=categories, yticklabels=categories, cmap='Blues')
+    plt.xlabel('Predicted')
+    plt.ylabel('Actual')
+    plt.title('Confusion Matrix - AG News Classification')
+    plt.savefig('confusion_matrix.png') # This saves the image for your GitHub!
+    plt.show()
+
+plot_confusion_matrix(model, test_dataloader, device)
+
 def classify_text(text):
   model.eval()
   inputs = tokenizer(text , return_tensors = "pt", padding = "max_length" , truncation=True , max_length=128).to(device)
