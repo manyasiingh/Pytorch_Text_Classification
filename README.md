@@ -13,8 +13,7 @@ This project implements a simple neural network using PyTorch to classify news a
 
 The model's performance was evaluated using a Confusion Matrix to identify specific classification challenges.
 
-![Confusion Matrix](<img width="793" height="624" alt="image" src="https://github.com/user-attachments/assets/31ed1353-b2bc-470f-8bbc-ce7d18e9de6b" />
-)
+![Confusion Matrix](confusion_matrix.png)
 
 ### Analysis
 - The model performs exceptionally well on **Sports** news.
